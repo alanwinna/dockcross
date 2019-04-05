@@ -156,10 +156,10 @@ base: Dockerfile imagefiles/
 		--build-arg VCS_URL=`git config --get remote.origin.url` \
 		.
 	./docker_login.sh
-	$(DOCKER) tag $DOCKER_USERNAME/base:latest $DOCKER_USERNAME/dockcross:base
-	$(DOCKER) push $DOCKER_USERNAME/dockcross:base
-	$(DOCKER) tag $DOCKER_USERNAME/base:latest $DOCKER_USERNAME/dockcross:base-$(TAG)
-	$(DOCKER) push $DOCKER_USERNAME/dockcross:base-$(TAG)
+	$(DOCKER) tag $(ORG)/base:latest $(ORG)/dockcross:base
+	$(DOCKER) push $(ORG)/dockcross:base
+	$(DOCKER) tag $(ORG)/base:latest $(ORG)/dockcross:base-$(TAG)
+	$(DOCKER) push $(ORG)/dockcross:base-$(TAG)
 
 base.test: base
 	$(DOCKER) run $(RM) dockcross/base > $(BIN)/dockcross-base && chmod +x $(BIN)/dockcross-base
