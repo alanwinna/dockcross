@@ -155,6 +155,11 @@ base: Dockerfile imagefiles/
 		--build-arg IMAGE=$(ORG)/base \
 		--build-arg VCS_URL=`git config --get remote.origin.url` \
 		.
+	echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+	$(DOCKER) tag $DOCKER_USERNAME/base:latest $DOCKER_USERNAME/dockcross:base
+	$(DOCKER) push $DOCKER_USERNAME/dockcross:base
+	$(DOCKER) tag $DOCKER_USERNAME/base:latest $DOCKER_USERNAME/dockcross:base-$(TAG)
+	$(DOCKER) push $DOCKER_USERNAME/dockcross:base-$(TAG)
 
 base.test: base
 	$(DOCKER) run $(RM) dockcross/base > $(BIN)/dockcross-base && chmod +x $(BIN)/dockcross-base
