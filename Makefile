@@ -89,6 +89,11 @@ web-wasm: web-wasm/Dockerfile
 		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
 		web-wasm
 	rm -rf web-wasm/test
+	./docker_login.sh
+	$(DOCKER) tag $(ORG)/$@:latest $(ORG)/dockcross:$@
+	$(DOCKER) push $(ORG)/dockcross:$@
+	$(DOCKER) tag $(ORG)/$@:latest $(ORG)/dockcross:$@-$(TAG)
+	$(DOCKER) push $(ORG)/dockcross:$@-$(TAG)
 	rm -rf $@/imagefiles
 
 web-wasm.test: web-wasm
@@ -116,6 +121,11 @@ manylinux-x64: manylinux-x64/Dockerfile
 		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
 		-f manylinux-x64/Dockerfile .
 	rm -rf $@/imagefiles
+	./docker_login.sh
+	$(DOCKER) tag $(ORG)/$@:latest $(ORG)/dockcross:$@
+	$(DOCKER) push $(ORG)/dockcross:$@
+	$(DOCKER) tag $(ORG)/$@:latest $(ORG)/dockcross:$@-$(TAG)
+	$(DOCKER) push $(ORG)/dockcross:$@-$(TAG)
 
 manylinux-x64.test: manylinux-x64
 	$(DOCKER) run $(RM) dockcross/manylinux-x64 > $(BIN)/dockcross-manylinux-x64 && chmod +x $(BIN)/dockcross-manylinux-x64
@@ -141,6 +151,11 @@ manylinux-x86: manylinux-x86/Dockerfile
 		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
 		-f manylinux-x86/Dockerfile .
 	rm -rf $@/imagefiles
+	./docker_login.sh
+	$(DOCKER) tag $(ORG)/$@:latest $(ORG)/dockcross:$@
+	$(DOCKER) push $(ORG)/dockcross:$@
+	$(DOCKER) tag $(ORG)/$@:latest $(ORG)/dockcross:$@-$(TAG)
+	$(DOCKER) push $(ORG)/dockcross:$@-$(TAG)
 
 manylinux-x86.test: manylinux-x86
 	$(DOCKER) run $(RM) dockcross/manylinux-x86 > $(BIN)/dockcross-manylinux-x86 && chmod +x $(BIN)/dockcross-manylinux-x86
@@ -192,6 +207,11 @@ $(STANDARD_IMAGES): %: %/Dockerfile base
 		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
 		$@
 	rm -rf $@/imagefiles
+	./docker_login.sh
+	$(DOCKER) tag $(ORG)/$@:latest $(ORG)/dockcross:$@
+	$(DOCKER) push $(ORG)/dockcross:$@
+	$(DOCKER) tag $(ORG)/$@:latest $(ORG)/dockcross:$@-$(TAG)
+	$(DOCKER) push $(ORG)/dockcross:$@-$(TAG)
 
 #
 # testing implicit rule
