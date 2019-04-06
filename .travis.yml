@@ -7,4 +7,4 @@ git:
 branches:
   only:
   - master
-script: make base 
+script: make linux-s390x 
