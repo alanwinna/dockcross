@@ -1,4 +1,4 @@
-FROM pylam/base:latest
+FROM pylam/dockcross:base
 MAINTAINER Sergi Alvarez "pancake@nopcode.org"
 
 # This is for ARMv5 "legacy" (mipsel) devices which do NOT support hard float

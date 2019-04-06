@@ -1,4 +1,4 @@
-FROM pylam/base:latest
+FROM pylam/dockcross:base
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 RUN dpkg --add-architecture i386 && \

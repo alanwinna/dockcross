@@ -1,4 +1,4 @@
-FROM pylam/base:latest
+FROM pylam/dockcross:base
 
 # This is for 64-bit S390X Linux machine
 
