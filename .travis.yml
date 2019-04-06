@@ -4,7 +4,4 @@ services:
 git:
   depth: 3
   quiet: true
-branches:
-  only:
-  - master
 script: make linux-s390x 
